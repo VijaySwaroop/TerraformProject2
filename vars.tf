@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "vpc_cidr" {
-  default = "10.0.0.0/16"
+  default = "10.16.0.0/16"
 }
 
 variable "tenancy" {
@@ -11,7 +11,7 @@ variable "tenancy" {
 }
 
 variable "VPC_name" {
-  default = "My VPC 1"
+  default = "My VPC 2"
 }
 
 # variable "vpc_id" {
@@ -19,19 +19,19 @@ variable "VPC_name" {
 # }
 
 variable "subnet_cidr" {
-  default = "10.0.1.0/24"
+  default = "10.16.1.0/24"
 }
 
 variable "subnet_name" {
-  default = "Mysubnet_1"
+  default = "Mysubnet_1.2"
 }
 
 variable "Psubnet_cidr" {
-  default = "10.0.2.0/24"
+  default = "10.16.2.0/24"
 }
 
 variable "Psubnet_name" {
-  default = "Mysubnet_2"
+  default = "Mysubnet_1.1"
 }
 
 variable "IGW_name" {
@@ -55,7 +55,7 @@ variable "gw_cidr" {
 # }
 
 variable "route1_name" {
-  default = "Public_route_table"
+  default = "Public_route_table-1"
 }
 
 # variable "psubnet_id" {
@@ -67,7 +67,7 @@ variable "route1_name" {
 # }
 
 variable "route2_name" {
-  default = "Private_route_table"
+  default = "Private_route_table-1"
 }
 variable "ami" {
   default = "ami-06f2f23b8b95143c4"
@@ -77,11 +77,11 @@ variable "instance_type" {
   default = "t2.micro"
 }
 variable "Public_instance_name" {
-  default = "Jenkins Ansible"
+  default = "Jenkins Ansible-2"
 }
 
 variable "keyname" {
-  default = "keyone"
+  default = "keytwo"
 }
 
 

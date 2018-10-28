@@ -16,6 +16,6 @@ resource "aws_instance" "web" {
 
 resource "aws_key_pair" "newkey" {
     key_name = "${var.keyname}"
-    public_key = "${file("./keyone_public")}"
+    public_key = "${file("./keytwo.pub")}"
   
 }
