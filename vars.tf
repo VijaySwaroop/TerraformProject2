@@ -26,6 +26,10 @@ variable "subnet_name" {
   default = "Mysubnet_1.2"
 }
 
+variable "public_ip" {
+  default = "true"
+}
+
 variable "Psubnet_cidr" {
   default = "10.16.2.0/24"
 }
@@ -83,6 +87,12 @@ variable "Public_instance_name" {
 variable "keyname" {
   default = "keytwo"
 }
+variable "Private_instance_name" {
+  default = "Docker/Tomcat"
+}
 
+variable "ngw_cidr" {
+  default = "0.0.0.0/0"
+}
 
 
