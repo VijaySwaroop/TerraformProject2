@@ -20,7 +20,7 @@ resource "aws_instance" "web1" {
   # user_data              = "${file("./userdata.sh")}"
   key_name = "${aws_key_pair.newkey.key_name}"
 #  iam_instance_profile   = "${aws_iam_instance_profile.ec2_profile.name}"
-  vpc_security_group_ids = ["${aws_security_group.webservers-sg.id}"]
+  vpc_security_group_ids = ["${aws_security_group.webservers-sg-2.id}"]
 
   tags {
     Name = "${var.Private_instance_name}"

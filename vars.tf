@@ -11,7 +11,7 @@ variable "tenancy" {
 }
 
 variable "VPC_name" {
-  default = "My VPC 2"
+  default = "My VPC-1"
 }
 
 # variable "vpc_id" {
@@ -23,7 +23,7 @@ variable "subnet_cidr" {
 }
 
 variable "subnet_name" {
-  default = "Mysubnet_1.2"
+  default = "Mysubnet_1"
 }
 
 variable "public_ip" {
@@ -35,7 +35,7 @@ variable "Psubnet_cidr" {
 }
 
 variable "Psubnet_name" {
-  default = "Mysubnet_1.1"
+  default = "Mysubnet_2"
 }
 
 variable "IGW_name" {
@@ -81,7 +81,7 @@ variable "instance_type" {
   default = "t2.micro"
 }
 variable "Public_instance_name" {
-  default = "Jenkins Ansible-2"
+  default = "Jenkins Ansible"
 }
 
 variable "keyname" {
