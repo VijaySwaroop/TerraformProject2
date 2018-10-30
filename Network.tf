@@ -56,10 +56,10 @@ resource "aws_route_table_association" "subnet_router_association" {
 resource "aws_route_table" "Private_route" {
   vpc_id     = "${aws_vpc.My_VPC.id}"
 #  depends_on = "${aws_subnet.private_subnet_1.id}"
-  route {
-    cidr_block = "${var.ngw_cidr}"
-    gateway_id = "${aws_nat_gateway.gw.id}"
-  }
+  # route {
+  #   cidr_block = "${var.ngw_cidr}"
+  #   gateway_id = "${aws_nat_gateway.gw.id}"
+  # }
   tags {
     Name = "${var.route2_name}"
   }
