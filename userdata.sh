@@ -9,7 +9,7 @@ rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
 yum install jenkins -y
 service jenkins start
 chkconfig jenkins on
-python --version
+#python --version
 yum-config-manager --enable epel
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum -y install ansible

@@ -71,7 +71,7 @@ resource "aws_route_table_association" "Psubnet_router_association" {
 }
 # resource "aws_nat_gateway" "gw" {
 #   allocation_id = "${aws_eip.proxy_ip.id}"
-#   subnet_id     = "${aws_subnet.private_subnet_1.id}"
+#   subnet_id     = "${aws_subnet.Subnet_1.id}"
 
 #   tags {
 #     Name = "gw NAT"
@@ -81,5 +81,5 @@ resource "aws_route_table_association" "Psubnet_router_association" {
 # resource "aws_eip_association" "proxy_eip" {
 #   instance_id   = "${aws_instance.web1.id}"
 #   allocation_id = "${aws_eip.proxy_ip.id}"
-# # }
+#  }
 # resource "aws_eip" "proxy_ip" {}

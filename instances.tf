@@ -18,7 +18,7 @@ resource "aws_instance" "web1" {
   subnet_id = "${aws_subnet.private_subnet_1.id}"
 #  associate_public_ip_address ="true"
   # user_data              = "${file("./userdata.sh")}"
-  key_name = "${aws_key_pair.newkey.key_name}"
+  key_name = "${aws_key_pair.newkey1.key_name}"
 #  iam_instance_profile   = "${aws_iam_instance_profile.ec2_profile.name}"
   vpc_security_group_ids = ["${aws_security_group.webservers-sg-2.id}"]
 
@@ -31,5 +31,10 @@ resource "aws_instance" "web1" {
 resource "aws_key_pair" "newkey" {
     key_name = "${var.keyname}"
     public_key = "${file("./keytwo.pub")}"
+  
+}
+resource "aws_key_pair" "newkey1" {
+    key_name = "${var.keyname1}"
+    public_key = "${file("./key.pub")}"
   
 }

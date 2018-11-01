@@ -87,6 +87,9 @@ variable "Public_instance_name" {
 variable "keyname" {
   default = "keytwo"
 }
+variable "keyname1"{
+  default = "key"
+}
 variable "Private_instance_name" {
   default = "Docker/Tomcat"
 }
