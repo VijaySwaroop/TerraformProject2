@@ -1,0 +1,46 @@
+---
+- hosts:
+  become: yes
+  tasks:
+    - name: Install Java 1.8
+      yum:
+        name: java-1.8.0-openjdk-devel.x86_64
+        state: present
+    - name: Created Linux Group for Tomcat
+      group:
+        name: tomcat
+    - name: Add linux user for Tomcat
+      user:
+        name: tomcat
+        groups:
+          - tomcat
+          - sudo
+        home: /usr/share/tomcat
+    - name: Download Tomcat Archive
+      get_url:
+        url: http://mirrors.wuchna.com/apachemirror/tomcat/tomcat-8/v8.5.34/bin/apache-tomcat-8.5.34.tar.gz
+        dest: /opt/
+    - name: Extract Archive
+      command: chdir=/usr/share /bin/tar xvf /opt/apache-tomcat-8.5.34.tar.gz -C /opt/ create=/opt/apache-tomcat-8.5.34
+    - name: Symlink install directory
+      file:
+        src: /opt/apache-tomcat-8.5.34
+        path: /usr/share/tomcat
+        state: link
+    - name: Change ownership of Tomcat Installation
+      file:
+        path: /usr/share/tomcat
+        owner: tomcat
+        group:
+          name: tomcat
+        state: directory
+        recurse: yes
+    - name: Configure Tomcat as a service
+      copy:
+        src: tomcat-initscript.sh
+        dest: /etc/init.d/tomcat
+        mode: 0755
+    - name: Start the tomcat
+      service:
+        name: tomcat
+        state: present
