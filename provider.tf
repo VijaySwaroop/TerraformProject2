@@ -1,7 +1,6 @@
 provider "aws" {
   region = "${var.region}"
 }
-
 terraform{
     backend "s3" {
         bucket = "terraforms3bucket2"
@@ -9,6 +8,3 @@ terraform{
         region = "ap-south-1"
     }
 }
-
-
-

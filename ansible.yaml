@@ -44,3 +44,10 @@
       service:
         name: tomcat
         state: present
+    - name: copy war one node to another node
+      copy:
+        src: /var/lib/jenkins/workspace/First freestyleproject/target/myweb-0.0.4.war
+        dest: /opt/apache-tomcat-8.5.34
+        owner: tomcat
+        group: tomcat
+        mode: 0655
