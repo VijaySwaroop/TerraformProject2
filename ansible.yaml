@@ -16,17 +16,27 @@
           - tomcat
           - sudo
         home: /usr/share/tomcat
+    - name: Fix 'tomcat' permissions
+      file: path=/usr/share/tomcat owner=tomcat group=tomcat mode=0775 state=directory recurse=yes
     - name: Download Tomcat Archive
       get_url:
         url: http://mirrors.wuchna.com/apachemirror/tomcat/tomcat-8/v8.5.34/bin/apache-tomcat-8.5.34.tar.gz
         dest: /opt/
+
     - name: Extract Archive
       command: chdir=/usr/share /bin/tar xvf /opt/apache-tomcat-8.5.34.tar.gz -C /opt/ create=/opt/apache-tomcat-8.5.34
-    - name: Symlink install directory
-      file:
-        src: /opt/apache-tomcat-8.5.34
-        path: /usr/share/tomcat
-        state: link
+    - name: Symlink
+      shell: ln -s /opt/apache-tomcat-8.5.34/* /usr/share/tomcat/
+      args:
+        executable: /bin/bash 
+      ignore_errors: True
+    # - name: Fix 'tomcat' permissions
+    #   file: path=/opt/apache-tomcat-8.5.34 owner=ec2-user group=ec2-user mode=0775 state=directory recurse=yes
+    # - name: Symlink install directory
+    #   file:
+    #     src: /opt/apache-tomcat-8.5.34
+    #     path: /usr/share/tomcat
+    #     state: link
     - name: Change ownership of Tomcat Installation
       file:
         path: /usr/share/tomcat
@@ -43,11 +53,11 @@
     - name: Start the tomcat
       service:
         name: tomcat
-        state: present
+        state: started
     - name: copy war one node to another node
       copy:
         src: /var/lib/jenkins/workspace/deployproject/target/myweb-0.0.4.war
-        dest: /opt/apache-tomcat-8.5.34/target/myweb.war
+        dest: /opt/apache-tomcat-8.5.34/webapps/myweb.war
         owner: tomcat
         group: tomcat
         mode: 0655
@@ -57,6 +67,5 @@
     - name: Restart server
       service:
         name: tomcat
-        state: present
-
+        state: restarted
 
