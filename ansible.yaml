@@ -46,8 +46,17 @@
         state: present
     - name: copy war one node to another node
       copy:
-        src: /var/lib/jenkins/workspace/First freestyleproject/target/myweb-0.0.4.war
-        dest: /opt/apache-tomcat-8.5.34
+        src: /var/lib/jenkins/workspace/deployproject/target/myweb-0.0.4.war
+        dest: /opt/apache-tomcat-8.5.34/target/myweb.war
         owner: tomcat
         group: tomcat
         mode: 0655
+      notify:
+        - Restart server
+    handlers:
+    - name: Restart server
+      service:
+        name: tomcat
+        state: present
+
+

@@ -55,11 +55,11 @@ resource "aws_route_table_association" "subnet_router_association" {
 
 resource "aws_route_table" "Private_route" {
   vpc_id     = "${aws_vpc.My_VPC.id}"
-#  depends_on = "${aws_subnet.private_subnet_1.id}"
-  # route {
-  #   cidr_block = "${var.ngw_cidr}"
-  #   gateway_id = "${aws_nat_gateway.gw.id}"
-  # }
+#depends_on = "${aws_subnet.private_subnet_1.id}"
+  route {
+    cidr_block = "${var.ngw_cidr}"
+    gateway_id = "${aws_nat_gateway.gw.id}"
+  }
   tags {
     Name = "${var.route2_name}"
   }
@@ -69,17 +69,17 @@ resource "aws_route_table_association" "Psubnet_router_association" {
   subnet_id      = "${aws_subnet.private_subnet_1.id}"
   route_table_id = "${aws_route_table.Private_route.id}"
 }
-# resource "aws_nat_gateway" "gw" {
-#   allocation_id = "${aws_eip.proxy_ip.id}"
-#   subnet_id     = "${aws_subnet.Subnet_1.id}"
+resource "aws_nat_gateway" "gw" {
+  allocation_id = "${aws_eip.proxy_ip.id}"
+  subnet_id     = "${aws_subnet.Subnet_1.id}"
 
-#   tags {
-#     Name = "gw NAT"
-#   }
-# }
+  tags {
+    Name = "gw NAT"
+  }
+}
 
 # resource "aws_eip_association" "proxy_eip" {
 #   instance_id   = "${aws_instance.web1.id}"
 #   allocation_id = "${aws_eip.proxy_ip.id}"
 #  }
-# resource "aws_eip" "proxy_ip" {}
+resource "aws_eip" "proxy_ip" {}
